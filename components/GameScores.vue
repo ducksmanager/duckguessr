@@ -60,8 +60,8 @@
 </template>
 
 <script>
-import { defineComponent, ref } from '@nuxtjs/composition-api'
 import Vue from 'vue'
+import { defineComponent, ref } from '#imports'
 
 const cloudinaryUrlRoot =
   'https://res.cloudinary.com/dl7hskxab/image/upload/v1623338718/inducks-covers/'

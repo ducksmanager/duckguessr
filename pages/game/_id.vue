@@ -71,16 +71,6 @@
 </template>
 
 <script lang="ts">
-import {
-  computed,
-  defineComponent,
-  onMounted,
-  ref,
-  useContext,
-  useRoute,
-  watch,
-} from '@nuxtjs/composition-api'
-
 import type Index from '@prisma/client'
 import { io, Socket } from 'socket.io-client'
 import AuthorCard from '~/components/AuthorCard.vue'

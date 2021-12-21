@@ -40,15 +40,9 @@
 </template>
 
 <script lang="ts">
-import {
-  defineComponent,
-  useRouter,
-  ref,
-  reactive,
-  onMounted,
-} from '@nuxtjs/composition-api'
 import { io } from 'socket.io-client'
 import type Index from '@prisma/client'
+import { defineComponent, useRouter, ref, reactive, onMounted } from '#imports'
 import useUser from '@/components/user'
 
 export default defineComponent({

@@ -16,8 +16,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api'
 import useUser from '../components/user'
+import { defineComponent } from '#imports'
 
 export default defineComponent({
   setup() {

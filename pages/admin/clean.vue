@@ -21,8 +21,8 @@
 </template>
 
 <script lang="ts">
-import { onMounted, ref } from '@nuxtjs/composition-api'
 import { io, Socket } from 'socket.io-client'
+import { onMounted, ref } from '#imports'
 
 export default {
   name: 'Clean',

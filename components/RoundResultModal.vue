@@ -16,7 +16,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref, watch } from '@nuxtjs/composition-api'
+import { defineComponent, onMounted, ref, watch } from '#imports'
 
 export default defineComponent({
   name: 'RoundResultModal',

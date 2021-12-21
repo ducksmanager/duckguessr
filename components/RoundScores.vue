@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { defineComponent } from '@nuxtjs/composition-api'
+import { defineComponent } from '#imports'
 
 export default defineComponent({
   name: 'RoundScores',
