@@ -26,14 +26,14 @@
 </template>
 <script lang="ts">
 import Index from '@prisma/client'
-import { computed, defineComponent, onMounted, ref, useContext } from '@nuxtjs/composition-api'
 import { useI18n } from 'nuxt-i18n-composable'
+import { useNuxtApp } from '@nuxt/bridge/dist/runtime'
 
 export default defineComponent({
   name: 'Podium',
 
   setup() {
-    const { $axios } = useContext()
+    const { $axios } = useNuxtApp()
     const { t } = useI18n()
     const players = ref(null as Index.player[] | null)
 

@@ -25,28 +25,17 @@
       :previous-personcodes="game.rounds.map(({ personcode }) => personcode)"
       :remaining-time="remainingTime"
       :url="url"
-      @select-author="
-        chosenAuthor = $event
-        validateGuess()
-      "
+      @select-author="validateGuess($event)"
     />
   </b-container>
 </template>
 
 <script lang="ts">
-import {
-  computed,
-  defineComponent,
-  onMounted,
-  ref,
-  useContext,
-  useRoute,
-} from '@nuxtjs/composition-api'
-
 import type Index from '@prisma/client'
 import { io, Socket } from 'socket.io-client'
 import Vue from 'vue'
 import { useI18n } from 'nuxt-i18n-composable'
+import { useNuxtApp } from '@nuxt/bridge/dist/runtime'
 import { getDuckguessrId } from '@/composables/user'
 import { Author, RoundWithScoresAndAuthor } from '~/types/roundWithScoresAndAuthor'
 import { ClientToServerEvents, ServerToClientEvents } from '~/types/socketEvents'
@@ -65,7 +54,7 @@ interface GameFull extends Index.game {
 export default defineComponent({
   name: 'GamePage',
   setup() {
-    const { $axios } = useContext()
+    const { $axios } = useNuxtApp()
     const duckguessrId = getDuckguessrId()
     const { t } = useI18n()
     const route = useRoute()
@@ -127,12 +116,13 @@ export default defineComponent({
       return nextRound?.started_at ? new Date(nextRound?.started_at) : null
     })
 
-    const validateGuess = () => {
+    const validateGuess = (receivedChosenAuthor) => {
+      chosenAuthor.value = receivedChosenAuthor
       gameSocket!.emit('guess', currentRound.value!.id, chosenAuthor.value)
     }
 
     const loadGame = async () => {
-      game.value = await $axios.$get(`/api/game/${route.value.params.id}`)
+      game.value = await $axios.$get(`/api/game/${route.params.id}`)
       if (!game) {
         console.error('No game ID')
       }
@@ -141,7 +131,7 @@ export default defineComponent({
     onMounted(async () => {
       await loadGame()
 
-      gameSocket = io(`${process.env.SOCKET_URL}/game/${route.value.params.id}`, {
+      gameSocket = io(`${process.env.SOCKET_URL}/game/${route.params.id}`, {
         auth: {
           cookie: document.cookie,
         },

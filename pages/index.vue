@@ -20,13 +20,13 @@
 </template>
 
 <script lang="ts">
-import { onMounted, ref, useContext } from '@nuxtjs/composition-api'
 import { useI18n } from 'nuxt-i18n-composable'
+import { useNuxtApp } from '@nuxt/bridge/dist/runtime'
 
 export default {
   name: 'Welcome',
   setup() {
-    const { $axios } = useContext()
+    const { $axios } = useNuxtApp()
     const { t } = useI18n()
 
     const datasets = ref([] as Array<any>)

@@ -1,4 +1,5 @@
 {
+  "extends": "./.nuxt/tsconfig.json",
   "compilerOptions": {
     "allowJs": true,
     "baseUrl": ".",
@@ -13,14 +14,6 @@
     "moduleResolution": "Node",
     "noEmit": true,
     "outDir": "dist",
-    "paths": {
-      "~/*": [
-        "./*"
-      ],
-      "@/*": [
-        "./*"
-      ]
-    },
     "sourceMap": true,
     "strict": true,
     "target": "ES2018",
@@ -28,8 +21,7 @@
       "@nuxt/types",
       "@nuxtjs/axios",
       "@types/node",
-      "codeceptjs",
-      "unplugin-vue2-script-setup/types"
+      "codeceptjs"
     ]
   },
   "ts-node": {

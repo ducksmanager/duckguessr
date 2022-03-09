@@ -25,7 +25,6 @@
 </template>
 
 <script lang="ts">
-import { computed, onMounted, ref } from '@nuxtjs/composition-api'
 import { defineComponent } from '@vue/runtime-dom'
 import { io } from 'socket.io-client'
 import Index from '@prisma/client'

@@ -12,8 +12,8 @@
     </b-container>
     <h3 class="mt-3">Scores</h3>
     <b-table striped dark :items="playersWithScores">
-      <template #head(playerId)="">&nbsp;</template>
-      <template #head(totalScore)="">&nbsp;</template>
+      <template #head(playerId)="{}">&nbsp;</template>
+      <template #head(totalScore)="{}">&nbsp;</template>
       <template #head()="{ column }">
         <b-img
           :src="imageUrl(scores[column.replace('round', '') - 1])"
@@ -52,7 +52,6 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from '@nuxtjs/composition-api'
 import Index from '@prisma/client'
 import { useI18n } from 'nuxt-i18n-composable'
 import { Author, RoundWithScoresAndAuthor } from '~/types/roundWithScoresAndAuthor'

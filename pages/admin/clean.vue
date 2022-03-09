@@ -60,16 +60,16 @@
 </template>
 
 <script lang="ts">
-import { computed, onMounted, ref, useContext, watch } from '@nuxtjs/composition-api'
 import type Index from '@prisma/client'
 import { io } from 'socket.io-client'
 import { useI18n } from 'nuxt-i18n-composable'
+import { useNuxtApp } from '@nuxt/bridge/dist/runtime'
 import { setUserCookieIfNotExists } from '~/composables/user'
 
 export default {
   name: 'Clean',
   setup() {
-    const { $axios } = useContext()
+    const { $axios } = useNuxtApp()
     const { t } = useI18n()
 
     const datasets = ref([] as Array<Index.dataset>)

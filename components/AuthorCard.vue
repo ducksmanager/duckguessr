@@ -20,7 +20,6 @@
   </b-col>
 </template>
 <script lang="ts">
-import { defineComponent, ref, watch } from '@nuxtjs/composition-api'
 import { Author } from '~/types/roundWithScoresAndAuthor'
 
 export default defineComponent({

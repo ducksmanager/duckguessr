@@ -13,8 +13,6 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from '@nuxtjs/composition-api'
-
 const props = defineProps<{
   total: number
   remaining: number

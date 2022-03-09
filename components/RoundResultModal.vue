@@ -22,7 +22,6 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref, watch } from '@nuxtjs/composition-api'
 import { BIconStopwatchFill } from 'bootstrap-vue'
 import { useI18n } from 'nuxt-i18n-composable'
 import { Author } from '~/types/roundWithScoresAndAuthor'

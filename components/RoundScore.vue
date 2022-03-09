@@ -6,7 +6,6 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api'
 import { BIconStopwatchFill } from 'bootstrap-vue'
 
 export default defineComponent({

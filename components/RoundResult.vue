@@ -20,8 +20,6 @@
 </template>
 
 <script lang="ts">
-import { ref } from '@nuxtjs/composition-api'
-
 import { RoundWithScoresAndAuthor } from '~/types/roundWithScoresAndAuthor'
 
 export default {

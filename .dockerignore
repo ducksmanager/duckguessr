@@ -14,6 +14,6 @@
 !/.babelrc
 !/.env*
 !/jsconfig.json
-!/nuxt.config.js
+!/nuxt.config.ts
 !/package*.json
 !/tsconfig.json

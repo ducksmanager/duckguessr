@@ -3,12 +3,11 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "concurrently \"nuxt\" \"cd server && nodemon index.ts\"",
-    "build": "nuxt build",
-    "start": "nuxt start",
-    "generate": "nuxt generate",
-    "lint:js": "eslint --ext \".js,.vue\" --ignore-path .gitignore .",
-    "lint": "npm run lint:js",
+    "dev": "concurrently \"nuxi dev\" \"cd server && nodemon index.ts\"",
+    "build": "nuxi build",
+    "start": "nuxi preview",
+    "lint:ts": "eslint --ext \".js,.ts,.vue\" --ignore-path .gitignore .",
+    "lint": "npm run lint:ts",
     "test": "npx codeceptjs run -f start",
     "prisma": "prisma db pull && prisma generate && cd server && prisma generate --schema=../prisma/schema.prisma"
   },
@@ -24,15 +23,15 @@
     "concurrently": "^7.0.0",
     "core-js": "^3.21.1",
     "mariadb": "^3.0.0",
-    "nuxt": "^2.15.8",
+    "nuxt-edge": "latest",
     "nuxt-i18n-composable": "^1.0.0",
     "request": "^2.88.2",
-    "socket.io-client": "^4.4.1"
+    "socket.io-client": "^4.4.1",
+    "vue-router": "^4.0.13"
   },
   "devDependencies": {
+    "@nuxt/bridge": "npm:@nuxt/bridge-edge@^3.0.0-27447229.20f3171",
     "@nuxt/types": "^2.15.8",
-    "@nuxt/typescript-build": "^2.1.0",
-    "@nuxtjs/composition-api": "^0.32.0",
     "@nuxtjs/eslint-config-typescript": "^8.0.0",
     "@nuxtjs/eslint-module": "^3.0.2",
     "@nuxtjs/storybook": "^4.3.0",

@@ -14,7 +14,6 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, useRouter, reactive, useRoute } from '@nuxtjs/composition-api'
 import { io } from 'socket.io-client'
 import type Index from '@prisma/client'
 import { useI18n } from 'nuxt-i18n-composable'
@@ -43,7 +42,7 @@ export default defineComponent({
       matchmakingSocket.emit(
         'iAmReady',
         gameType,
-        route.value.params.dataset,
+        route.params.dataset,
         ({ gameId }: { gameId: number; player: Index.player }) => {
           matchmakingSocket.close()
           router.replace(`/matchmaking/${gameId}`)

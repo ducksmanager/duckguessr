@@ -4,14 +4,6 @@
 </template>
 
 <script lang="ts">
-import {
-  defineComponent,
-  onMounted,
-  reactive,
-  ref,
-  useRoute,
-  useRouter,
-} from '@nuxtjs/composition-api'
 import Index from '@prisma/client'
 import { io } from 'socket.io-client'
 import { useI18n } from 'nuxt-i18n-composable'
@@ -26,7 +18,7 @@ export default defineComponent({
     const playersUsernames = reactive([] as Array<string>)
     const isReady = ref(false as Boolean)
 
-    const gameId = parseInt(route.value.params.id)
+    const gameId = parseInt(route.params.id)
 
     const matchmakingSocket = io(`${process.env.SOCKET_URL}/matchmaking/${gameId}`, {
       auth: {

@@ -1,5 +1,9 @@
 import { json } from 'body-parser'
 export default {
+  alias: {
+    '~': './',
+    '@': './',
+  },
   telemetry: false,
 
   // Target: https://go.nuxtjs.dev/config-target
@@ -28,12 +32,7 @@ export default {
   components: true,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-  buildModules: [
-    // https://go.nuxtjs.dev/typescript
-    '@nuxt/typescript-build',
-    // https://composition-api.nuxtjs.org
-    '@nuxtjs/composition-api/module',
-  ],
+  buildModules: [],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
