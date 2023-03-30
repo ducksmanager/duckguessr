@@ -1,14 +1,24 @@
-FROM node:16-slim AS install-socketio
+FROM node:16 as pnpm
+MAINTAINER Bruno Perel
+
+RUN npm i -g pnpm
+
+FROM pnpm AS app-install
+MAINTAINER Bruno Perel
 
 RUN apt-get update \
  && apt-get install --no-install-recommends -y git ca-certificates build-essential g++ python3 fontconfig \
- && apt-get clean
+ && apt-get clean \
+
+WORKDIR /app
+COPY package.json pnpm-lock.yaml .eslintrc.js ./
+RUN pnpm i
 
 WORKDIR /home
 COPY prisma server/package*.json ./
-RUN npm install
+RUN pnpm i
 
-FROM node:16-slim AS install-nuxt
+FROM pnpm AS install-nuxt
 
 RUN apt-get update \
  && apt-get install --no-install-recommends -y git ca-certificates build-essential g++ python3 fontconfig \
@@ -16,7 +26,7 @@ RUN apt-get update \
 
 WORKDIR /home
 COPY prisma package*.json ./
-RUN npm install
+RUN pnpm i
 RUN ./node_modules/.bin/prisma generate
 
 FROM node:16-slim AS runtime-nuxt
@@ -34,13 +44,13 @@ COPY . ./
 COPY .env.prod ./.env
 COPY --from=install-nuxt /home/node_modules ./node_modules
 
-RUN rm -rf server && npm run build
+RUN rm -rf server && pnpm run build
 
 EXPOSE 3000
 
 ENTRYPOINT [ "node_modules/.bin/nuxt", "start" ]
 
-FROM node:16-slim AS runtime-socketio
+FROM pnpm AS runtime-socketio
 
 WORKDIR /home
 
@@ -55,7 +65,7 @@ COPY types ./types
 WORKDIR /home/server
 COPY --from=install-socketio /home/node_modules ./node_modules
 COPY --from=install-nuxt /home/node_modules/.prisma ./node_modules/.prisma
-RUN npm install typescript
+RUN pnpm i typescript
 
 EXPOSE 4000
 
